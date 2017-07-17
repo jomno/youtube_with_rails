@@ -22,3 +22,14 @@ gem 'active_type', '0.3.1'
 >[rails_db gem](https://github.com/igorkasyanchuk/rails_db)<br>
 >[active_type gem](https://github.com/makandra/active_type)<br>
 >[google scope](https://developers.google.com/identity/protocols/googlescopes)
+
+## ToDo list
+- [x] yt gem install
+- [x] devise with google (for upload youtube)
+- [x] get video information(yt gem)
+- [x] uplaod youtube video(yt gem)
+- [x] auto iframe
+- [ ] add upload attribute(yt gem)
+- [ ] Background Uploading
+- [ ] Set permissions
+- [ ] VIDEO API
