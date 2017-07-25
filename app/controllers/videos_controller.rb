@@ -1,10 +1,12 @@
 class VideosController < ApplicationController
+  before_action :set_category
   def index
-    @videos = Video.order('created_at DESC')
+    @videos = @category.nil? ? Video.order('created_at DESC') : @category.videos.order('created_at DESC')
   end
 
   def new
     @video = Video.new
+    authorize! :manage, @video
   end
 
   def create
@@ -18,6 +20,6 @@ class VideosController < ApplicationController
   end
   private
   def video_params
-    params.require(:video).permit(:link)
+    params.require(:video).permit(:link,:category_id)
   end
 end

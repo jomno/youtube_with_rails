@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require ssi_uploader
+//= require pace.min
+//= require urchin
+//= require form
+//= require toastr_rails
 //= require turbolinks
 //= require_tree .

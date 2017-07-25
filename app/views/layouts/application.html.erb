@@ -5,9 +5,10 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  
 </head>
 <body>
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse" style="margin-bottom:0px;">
   <div class="container">
     <div class="navbar-header">
       <%= link_to 'YT APIv3', root_path, class: 'navbar-brand' %>
@@ -20,23 +21,39 @@
     </ul>
     <ul class="nav navbar-nav pull-right">
       <% if user_signed_in? %>
-        <li><span><%= current_user.name %></span></li>
+        <li><span><%= current_user.has_role? :nnew %></span></li>
         <li><%= link_to "로그아웃",destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to "로그인",new_user_session_path %></li>
+        <li><%= link_to "로그인",user_google_oauth2_omniauth_authorize_path %></li>
       <% end %>
     </ul>
   </div>
 </div>
 
 <div class="container">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>">
-      <%= value %>
-    </div>
-  <% end %>
+  <%= render 'toastr_rails/flash'%>
 </div>
-<%= yield %>
-
+<div class="jumbotron">
+  <div class="container">
+    <h1>유튜브에 여러분의 영상을 공유하세요!</h1>
+    <p>Click the button below to share your video from YouTube.</p>
+    <p>
+      <%= link_to 'Add video now!', new_video_path, class: 'btn btn-primary btn-lg' %>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="list-group" style="margin:40px;" >
+        <a href="/" class="list-group-item" date-remote="true">all</a>
+      <% Category.all.each do |c| %>
+        <a href="?category=<%=c.id%>" class="list-group-item" date-remote="true"><%=c.name%></a>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <%= yield %>
+  </div>
+</div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,16 +10,17 @@ class User < ActiveRecord::Base
 
     # user와 identity가 nil이 아니라면 받는다
     identity = Identity.find_for_oauth(auth)
+    # token을 바꿔준다
+    identity.token = auth.credentials.token
+    identity.save!
     user = signed_in_resource ? signed_in_resource : identity.user
     
     # user가 nil이라면 새로 만든다.
     if user.nil?
-      
       # 이미 있는 이메일인지 확인한다.
       email = auth.info.email
       user = User.where(:email => email).first  
       unless self.where(email: auth.info.email).exists?
-        
         # 없다면 새로운 데이터를 생성한다.
         if user.nil?
           user = User.new(
@@ -28,11 +30,8 @@ class User < ActiveRecord::Base
           )            
           user.save!
         end
-        
       end
-    
     end
-    
     if identity.user != user
       identity.user = user
       identity.save!

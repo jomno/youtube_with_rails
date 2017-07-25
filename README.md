@@ -1,7 +1,7 @@
 # Rails Youtube Upload
 
 ## setup Gemfile
-```
+```ruby
 gem 'yt', '~> 0.13.7'
 gem 'bootstrap-sass', '~> 3.3.0.1'
 gem 'autoprefixer-rails'
@@ -29,7 +29,8 @@ gem 'active_type', '0.3.1'
 - [x] get video information(yt gem)
 - [x] uplaod youtube video(yt gem)
 - [x] auto iframe
-- [ ] add upload attribute(yt gem)
-- [ ] Background Uploading
+- [x] add category tab
+- [x] add toastr_rails(flash)
+- [ ] admin set
 - [ ] Set permissions
 - [ ] VIDEO API
