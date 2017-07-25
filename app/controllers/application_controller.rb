@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
+  def access_denied(exception)
+    redirect_to users_path, alert: exception.message
+  end
   private
   def set_category
     # puts params[:category].nil?

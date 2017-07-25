@@ -34,3 +34,14 @@ gem 'active_type', '0.3.1'
 - [ ] admin set
 - [ ] Set permissions
 - [ ] VIDEO API
+- 
+
+## 주요 이슈
+active admin arbre issues
+-
+이게.. active admin을 쓰면 arbre가 자동인데.. video나 article 같은 명령어는 뷰헬퍼로 작동됨<br>
+그래서 모델명이 같다면 rename을 해줘야하는데 그거는
+```ruby
+ActiveAdmin.register Video, as: "Post"
+```
+이런식으로 해줘야 합니당 ㅎㅎ..

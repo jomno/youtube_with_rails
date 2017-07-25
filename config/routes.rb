@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  # devise_for :admin_users
   devise_for :users, controllers: {
     sessions: 'user/sessions',
     omniauth_callbacks: 'user/omniauth_callbacks'
   }
+  ActiveAdmin.routes(self)
+
   resources :videos, only: [:index, :new, :create]
   resources :video_uploads, only: [:new, :create]
   root 'videos#index'

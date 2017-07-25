@@ -9,6 +9,8 @@ class Ability
         can :manage, :all
       elsif user.has_role? :nnew
         can :read, Video
+      else
+        cannot :manage, ActiveAdmin::Page
       end
     #
     # The first argument to `can` is the action you are giving the user

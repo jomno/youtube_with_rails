@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 #no remake
+gem 'activeadmin', github: 'activeadmin'  
 gem 'toastr_rails'
 gem 'cancancan'
 gem 'rolify'
